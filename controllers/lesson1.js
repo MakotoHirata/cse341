@@ -1,12 +1,12 @@
 const homeRoute = (req, res) => {
-  res.send("Makoto Hirata");
+  res.send("Koji Hirata");
 };
 
-const hannahRoute = (req, res) => {
-  res.send("Hannah Birch");
+const mariRoute = (req, res) => {
+  res.send("Mari Hirata");
 };
 
 module.exports = {
     homeRoute,
-    hannahRoute,
+    mariRoute,
 }
