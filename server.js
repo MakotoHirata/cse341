@@ -1,12 +1,16 @@
+const app = require('./app');
+const { initDb } = require('./db/connect');
+require('dotenv').config();
 
-const express = require('express');
-const app = express();
-const lesson1contoroller = require('./controllers/lesson1')
+const port = process.env.PORT || 3000;
 
-const port = 3000
-
-app.use('/', require('./routes'));
- 
-app.listen(process.env.PORT || port, () => {
-  console.log('Web Server is listening at port ' + (process.env.PORT || 3000));
-});
+initDb()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`MongoDB connected`);
+      console.log(`Server running on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Database connection failed:', err);
+  });
