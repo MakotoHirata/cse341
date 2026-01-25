@@ -28,7 +28,49 @@ const getSingleContact = async (req, res) => {
   }
 };
 
+const createContact = async (req, res) => {
+  const db = getDb();
+  const contact = req.body;
+
+  const { firstName, lastName, email, favoriteColor, birthday } = contact;
+  if (!firstName || !lastName || !email || !favoriteColor || !birthday) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  const result = await db.collection('contacts').insertOne(contact);
+  res.status(201).json({ id: result.insertedId });
+};
+
+const updateContact = async (req, res) => {
+  const db = getDb();
+  const id = req.params.id;
+
+  await db.collection('contacts').updateOne(
+    { _id: new ObjectId(id) },
+    { $set: req.body }
+  );
+
+  res.sendStatus(204);
+};
+
+const deleteContact = async (req, res) => {
+  const db = getDb();
+  const id = req.params.id;
+
+  await db.collection('contacts').deleteOne({
+    _id: new ObjectId(id),
+  });
+
+  res.sendStatus(200);
+};
+
+
+
+
 module.exports = {
-  getAllContacts,
-  getSingleContact
+ getAllContacts,
+  getSingleContact,
+  createContact,
+  updateContact,
+  deleteContact,
 };
