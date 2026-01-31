@@ -9,7 +9,7 @@ const doc = {
   },
   host:
     process.env.NODE_ENV === 'production'
-      ? 'cse341-ft2m.onrender.com/'
+      ? 'cse341-ft2m.onrender.com'
       : 'localhost:3000',
   schemes:
     process.env.NODE_ENV === 'production'
