@@ -5,10 +5,10 @@
     "description": "Contacts routes documentation",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-ft2m.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/contacts": {
