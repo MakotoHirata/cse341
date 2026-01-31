@@ -1,7 +1,7 @@
-const { ObjectId } = require('mongodb');
-const { getDb } = require('../db/connect');
+import { ObjectId } from 'mongodb';
+import { getDb } from '../db/connect.js';
 
-const getAllContacts = async (req, res) => {
+export const getAllContacts = async (req, res) => {
   try {
     const db = getDb();
     const result = await db.collection('contacts').find();
@@ -12,7 +12,7 @@ const getAllContacts = async (req, res) => {
   }
 };
 
-const getSingleContact = async (req, res) => {
+export const getSingleContact = async (req, res) => {
   try {
     const contactId = new ObjectId(req.params.id);
     const db = getDb();
@@ -28,7 +28,7 @@ const getSingleContact = async (req, res) => {
   }
 };
 
-const createContact = async (req, res) => {
+export const createContact = async (req, res) => {
   const db = getDb();
   const contact = req.body;
 
@@ -41,7 +41,7 @@ const createContact = async (req, res) => {
   res.status(201).json({ id: result.insertedId });
 };
 
-const updateContact = async (req, res) => {
+export const updateContact = async (req, res) => {
   const db = getDb();
   const id = req.params.id;
 
@@ -53,7 +53,7 @@ const updateContact = async (req, res) => {
   res.sendStatus(204);
 };
 
-const deleteContact = async (req, res) => {
+export const deleteContact = async (req, res) => {
   const db = getDb();
   const id = req.params.id;
 
@@ -62,15 +62,4 @@ const deleteContact = async (req, res) => {
   });
 
   res.sendStatus(200);
-};
-
-
-
-
-module.exports = {
- getAllContacts,
-  getSingleContact,
-  createContact,
-  updateContact,
-  deleteContact,
 };
