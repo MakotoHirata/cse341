@@ -70,6 +70,25 @@
       }
     },
     "/contacts/{id}": {
+      "get": {
+        "summary": "Get contact by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
       "put": {
         "summary": "Update contact",
         "consumes": [
